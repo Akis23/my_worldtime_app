@@ -15,7 +15,6 @@ class _LoadingState extends State<Loading> {
     WorldTime instance =
         WorldTime(location: 'Berlin', flag: '', url: 'Europe/Berlin');
     await instance.getTime();
-    print(instance.time);
     setState(() {
       time = instance.time;
     });
