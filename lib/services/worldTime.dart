@@ -25,7 +25,7 @@ class WorldTime {
       time = DateFormat.jm().format(cur);
     } catch (e) {
       print('catch error: $e');
-      time = 'Den mporw na fortwsw tin wra apo afti tin topothesia';
+      time = 'Cant load time data';
     }
   }
 }
