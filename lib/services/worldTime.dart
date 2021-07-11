@@ -13,6 +13,13 @@ class WorldTime {
     http.Response response =
         await http.get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
     Map data = jsonDecode(response.body);
-    print(data);
+
+    String datetime = data['datetime'];
+    String offset = data['utc_offset'].substring(1, 3);
+
+    DateTime cur = DateTime.parse(datetime);
+    cur = cur.add(Duration(hours: int.parse(offset)));
+
+    time = cur.toString();
   }
 }

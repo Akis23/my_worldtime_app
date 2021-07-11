@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_worldtime_project/services/worldTime.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -9,19 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  void setupWorldTime() async {
-    WorldTime instance =
-        WorldTime(location: 'Berlin', flag: '', url: 'Europe/Berlin');
-    await instance.getTime();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setupWorldTime();
-    print('initState function run');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
