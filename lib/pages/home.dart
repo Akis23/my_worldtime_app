@@ -12,7 +12,21 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Text('Home'),
+        child: Column(
+          children: <Widget>[
+            FlatButton.icon(
+              onPressed: () {
+                setState(() {
+                  Navigator.pushNamed(context, '/menu');
+                });
+              },
+              icon: Icon(Icons.radio_button_on),
+              label: Text(
+                'Menu',
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
