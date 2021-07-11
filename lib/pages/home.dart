@@ -12,7 +12,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)!.settings.arguments as Map;
+    data = data.isNotEmpty
+        ? data
+        : ModalRoute.of(context)!.settings.arguments as Map;
 
     String bgImage = data['isDayTime'] ? 'day.jpg' : 'night.jpg';
 
@@ -30,9 +32,16 @@ class _HomeState extends State<Home> {
             child: Column(
               children: <Widget>[
                 FlatButton.icon(
-                  onPressed: () {
+                  onPressed: () async {
+                    dynamic result =
+                        await Navigator.pushNamed(context, '/menu');
                     setState(() {
-                      Navigator.pushNamed(context, '/menu');
+                      data = {
+                        'time': result['time'],
+                        'location': result['location'],
+                        'flag': result['flag'],
+                        'isDayTime': result['isDayTime']
+                      };
                     });
                   },
                   icon: Icon(Icons.radio_button_on),
