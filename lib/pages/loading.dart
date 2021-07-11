@@ -9,7 +9,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  String time = 'loading';
+  String time = 'loading...';
 
   void setupWorldTime() async {
     WorldTime instance =
@@ -34,6 +34,20 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: Text(time)));
+    return Scaffold(
+        backgroundColor: Colors.blue[800],
+        body: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                time,
+                style: TextStyle(fontSize: 70.0),
+              )
+            ],
+          ),
+        )));
   }
 }
