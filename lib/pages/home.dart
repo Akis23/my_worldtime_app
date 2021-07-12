@@ -36,12 +36,16 @@ class _HomeState extends State<Home> {
                     dynamic result =
                         await Navigator.pushNamed(context, '/menu');
                     setState(() {
-                      data = {
-                        'time': result['time'],
-                        'location': result['location'],
-                        'flag': result['flag'],
-                        'isDayTime': result['isDayTime']
-                      };
+                      if (result != null) {
+                        data = {
+                          'time': result['time'],
+                          'location': result['location'],
+                          'flag': result['flag'],
+                          'isDayTime': result['isDayTime']
+                        };
+                      } else {
+                        data = data;
+                      }
                     });
                   },
                   icon: Icon(Icons.radio_button_on),
