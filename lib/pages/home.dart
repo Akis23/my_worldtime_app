@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:my_worldtime_project/services/worldTime.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,6 +17,18 @@ class _HomeState extends State<Home> {
     data = data.isNotEmpty
         ? data
         : ModalRoute.of(context)!.settings.arguments as Map;
+
+    void clock() async {
+      WorldTime instance =
+          WorldTime(location: data['location'], flag: '', url: data['url']);
+      await instance.getTime();
+
+      Timer(Duration(minutes: 1), clock);
+
+      setState(() {
+        data['time'] = instance.time;
+      });
+    }
 
     String bgImage = data['isDayTime'] ? 'day.jpg' : 'night.jpg';
 
@@ -36,12 +50,14 @@ class _HomeState extends State<Home> {
                     dynamic result =
                         await Navigator.pushNamed(context, '/menu');
                     setState(() {
+                      clock();
                       if (result != null) {
                         data = {
                           'time': result['time'],
                           'location': result['location'],
                           'flag': result['flag'],
-                          'isDayTime': result['isDayTime']
+                          'isDayTime': result['isDayTime'],
+                          'url': result['url']
                         };
                       } else {
                         data = data;

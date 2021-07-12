@@ -35,7 +35,8 @@ class _ChooseLocationState extends State<ChooseLocation> {
       'location': instance.location,
       'flag': instance.flag,
       'time': instance.time,
-      'isDayTime': instance.isDayTime
+      'isDayTime': instance.isDayTime,
+      'url': instance.url
     });
   }
 
