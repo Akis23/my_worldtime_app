@@ -1,6 +1,6 @@
 # My WorldTime Project
 
-A new Flutter project.
+World Time project.
 
 ## Getting Started
 
